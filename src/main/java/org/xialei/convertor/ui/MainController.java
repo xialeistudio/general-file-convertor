@@ -43,7 +43,7 @@ public class MainController implements Initializable {
     }
 
     private void loadConvertors() {
-        ConvertorLoaderTask task = new ConvertorLoaderTask("config.properties");
+        ConvertorLoaderTask task = new ConvertorLoaderTask();
         task.valueProperty().addListener((observable, oldValue, newValue) -> {
             if (!newValue.isPresent()) {
                 MessageBox.info("无可用转换器, 请检查配置文件");
@@ -59,7 +59,10 @@ public class MainController implements Initializable {
             comboConvertors.setItems(observableNameList);
             comboConvertors.getSelectionModel().selectFirst();
         });
-        task.exceptionProperty().addListener((observable, oldValue, newValue) -> MessageBox.info(newValue.getMessage()));
+        task.exceptionProperty().addListener((observable, oldValue, newValue) -> {
+            MessageBox.info(newValue.getMessage());
+            newValue.printStackTrace();
+        });
         new Thread(task).start();
     }
 

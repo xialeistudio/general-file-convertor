@@ -8,14 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class ConvertorLoaderTask extends Task<Optional<List<FileConvertor>>> {
-    private String filename;
-
-    public ConvertorLoaderTask(String filename) {
-        this.filename = filename;
-    }
-
     @Override
     protected Optional<List<FileConvertor>> call() throws Exception {
-        return FileConvertors.loadConvertors(filename);
+        return FileConvertors.shared().loadConvertors();
     }
 }
