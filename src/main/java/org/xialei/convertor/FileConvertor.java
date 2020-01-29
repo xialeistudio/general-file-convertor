@@ -10,6 +10,8 @@ public interface FileConvertor {
 
     String name();
 
+    String description();
+
     interface ProgressListener {
         void onProgress(double value, double maxValue);
     }

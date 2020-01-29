@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane hgap="10" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.xialei.convertor.ui.MainController">
+    <padding>
+        <Insets bottom="10" left="10" right="10" top="10" />
+    </padding>
+    <Label text="源文件" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <TextField fx:id="inputSource" editable="false" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+    <Button fx:id="buttonSource" onAction="#handleSourceClicked" text="浏览..." GridPane.columnIndex="2" GridPane.rowIndex="0" />
+
+    <Label text="保存路径" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <TextField fx:id="inputDest" editable="false" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Button fx:id="buttonDest" onAction="#handleDestClicked" text="浏览..." GridPane.columnIndex="2" GridPane.rowIndex="1" />
+
+    <Label text="转换器" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <ComboBox fx:id="comboConvertors" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+    <Label text="说明" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+    <Label prefHeight="40" fx:id="txtDescription" textFill="#666666" style="-fx-font-size: 11px;" wrapText="true" text="未选择转换器" prefWidth="200" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+
+    <Label text="转换进度" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+    <ProgressBar fx:id="processBar" prefWidth="200" progress="0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+    <HBox alignment="BOTTOM_RIGHT" GridPane.columnSpan="4" GridPane.rowIndex="5">
+        <Button fx:id="buttonStart" onAction="#handleStartClicked" disable="true" text="开始" />
+    </HBox>
+</GridPane>

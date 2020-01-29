@@ -28,6 +28,11 @@ public class NetEaseCloudMusicDecryptor implements FileConvertor {
 
     @Override
     public String name() {
-        return "网易云音乐缓存文件解密器";
+        return "网易云音乐缓存解密器";
+    }
+
+    @Override
+    public String description() {
+        return "将网易云音乐加密的缓存文件解密为原始音乐文件";
     }
 }
