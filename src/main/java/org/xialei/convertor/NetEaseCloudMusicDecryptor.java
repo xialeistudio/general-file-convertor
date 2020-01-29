@@ -2,28 +2,24 @@ package org.xialei.convertor;
 
 import java.io.*;
 
-public class NetEaseCloudMusicDecryptor extends FileConvertor {
+public class NetEaseCloudMusicDecryptor implements FileConvertor {
     private static final int xorKey = 0xA3;
 
-    public NetEaseCloudMusicDecryptor(File sourceFile, File destinationFile) {
-        super(sourceFile, destinationFile);
-    }
-
     @Override
-    public void run() throws Exception {
+    public void convert(File in, File out, ProgressListener listener) throws Exception {
         try (
-                BufferedInputStream bis = new BufferedInputStream(new FileInputStream(sourceFile));
-                BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(destinationFile))
+                BufferedInputStream bis = new BufferedInputStream(new FileInputStream(in));
+                BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(out))
         ) {
             int b;
             int convertedLength = 0;
-            long totalLength = sourceFile.length();
+            long totalLength = in.length();
 
             while ((b = bis.read()) != -1) {
                 bos.write(b ^ xorKey);
                 convertedLength++;
-                if (progressListener != null && convertedLength % 100 == 0) {
-                    progressListener.onProgress(convertedLength, totalLength);
+                if (listener != null && convertedLength % 100 == 0) {
+                    listener.onProgress(convertedLength, totalLength);
                 }
             }
             bos.flush();

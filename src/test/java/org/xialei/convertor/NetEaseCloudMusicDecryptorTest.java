@@ -11,16 +11,18 @@ public class NetEaseCloudMusicDecryptorTest {
 
     @BeforeClass
     public static void setUp() {
-        String home = System.getProperty("user.home");
-        decryptor = new NetEaseCloudMusicDecryptor(
-                new File(home + "/Desktop/186436-128000-17a10cdcf43c5f428432591e2239a6ac.mp3.uc!"),
-                new File(home + "/Desktop/test.mp3")
-        );
+        decryptor = new NetEaseCloudMusicDecryptor();
     }
 
     @Test
     public void run() throws Exception {
-        decryptor.run();
+        String home = System.getProperty("user.home");
+
+        decryptor.convert(
+                new File(home + "/Desktop/186436-128000-17a10cdcf43c5f428432591e2239a6ac.mp3.uc!"),
+                new File(home + "/Desktop/test.mp3"),
+                null
+        );
     }
 
     @Test
